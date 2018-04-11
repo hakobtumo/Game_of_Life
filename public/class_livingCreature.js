@@ -4,7 +4,7 @@ class Kendani{
        this.y = y;
        this.index = index;
    }
-   yntrelVandak() {
+   chooseNearFieldsByIndex() {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];

@@ -1,4 +1,4 @@
-class Grass extends Kendani{
+class Grass {
     constructor(x, y) {
         super(x,y);
         this.multiply = 0;
