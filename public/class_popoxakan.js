@@ -1,6 +1,7 @@
 class popoxakan {
     constructor(x, y) {
-        
+        this.x = x;
+        this.y = y;
         this.energy = 10;
         this.directions = [
             [this.x + 1, this.y - 2],
@@ -13,7 +14,6 @@ class popoxakan {
             [this.x - 1, this.y - 2]
         ];
     }
-    
     chooseNearFieldsByIndex(ch) {
         var found = [];
         for (var i = 0; i < this.directions.length; i++) {
@@ -62,3 +62,4 @@ class popoxakan {
         }
     }
 }
+

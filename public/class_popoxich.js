@@ -1,6 +1,7 @@
 class popoxich{
     constructor(x, y) {
-        
+        this.x = x;
+        this.y = y;
         this.energy = 10;
         this.directions = [
             [this.x + 5, this.y - 6],
