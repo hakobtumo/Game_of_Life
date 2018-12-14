@@ -1,4 +1,4 @@
-class popoxich{
+module.exports=class popoxich{
     constructor(x, y) {
         this.x = x;
         this.y = y;

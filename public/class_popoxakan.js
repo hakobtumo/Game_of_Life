@@ -1,4 +1,4 @@
-class popoxakan {
+module.exports=class popoxakan {
     constructor(x, y) {
         this.x = x;
         this.y = y;

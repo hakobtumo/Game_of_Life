@@ -1,6 +1,6 @@
-class Grass extends LivingCreature {
+var LivingCreature=require('./class_livingCreature')
 
- 
+module.exports=class Grass extends LivingCreature {
     bazmanal() {
         var norVandak = random(this.chooseNearFieldsByIndex(0));
         /*console.log(norVandak, this.multiply);*/

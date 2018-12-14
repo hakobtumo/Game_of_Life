@@ -1,3 +1,9 @@
+var express = require('express');
+var app = express();
+
+var fs = require("fs");
+
+
 var matrix = [
     [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -129,28 +135,32 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
-setInterval(serverDraw, 3000);
-function serverDraw() {
-    for (var i in grassArr) {
-        grassArr[i].bazmanal();
+
+app.get('/', function (req, res) {
+    server.listen(3000);
+    setInterval(serverDraw, 3000);
+    function serverDraw() {
+        for (var i in grassArr) {
+            grassArr[i].bazmanal();
+        }
+        for (var i in xotakerArr) {
+            xotakerArr[i].eat();
+            xotakerArr[i].evolve();
+            xotakerArr[i].hunt();
+        }
+        for (var i in gishatichArr) {
+            gishatichArr[i].eat()
+            gishatichArr[i].evolve();
+            gishatichArr[i].die()
+        }
+        for (var i in popoxakanArr) {
+            popoxakanArr[i].eat()
+        }
+        for (var i in popoxichArr) {
+            popoxichArr[i].eat()
+        }
     }
-    for (var i in xotakerArr) {
-        xotakerArr[i].eat();
-        xotakerArr[i].evolve();
-        xotakerArr[i].hunt();
-    }
-    for (var i in gishatichArr) {
-        gishatichArr[i].eat()
-        gishatichArr[i].evolve();
-        gishatichArr[i].die()
-    }
-    for (var i in popoxakanArr) {
-        popoxakanArr[i].eat()
-    }
-    for (var i in popoxichArr) {
-        popoxichArr[i].eat()
-    }
-}
+});
 
 
 
