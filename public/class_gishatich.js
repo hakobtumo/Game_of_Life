@@ -1,31 +1,27 @@
-class gishatich {
+class gishatich extends LivingCreature{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.energy = 10;
+  
+    }
+    getNewCoordinates() {
         this.directions = [
-            [this.x - 2, this.y - 2],
-            [this.x + 3, this.y - 2],
-            [this.x + 3, this.y - 2],
-            [this.x - 3, this.y],
-            [this.x + 2, this.y + 4],
-            [this.x - 3, this.y + 3],
-            [this.x + 5, this.y + 3],
-            [this.x + 3, this.y + 3]
+            [this.x - 2, this.y - 1],
+            [this.x, this.y - 2],
+            [this.x + 1, this.y - 1],
+            [this.x + 2, this.y],
+            [this.x + 2, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x - 2, this.y + 1],
+            [this.x - 1, this.y],
         ];
     }
+
     chooseNearFieldsByIndex(ch) {
-        this.directions
-        var found = [];
-        for (var i = 0; i < this.directions.length; i++) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (matrix[y] && matrix[y][x] == ch) {
-                found.push(this.directions[i]);
-            }
-        }
-        return found;
+        this.getNewCoordinates();
+        return super.chooseNearFieldsByIndex(ch);
     }
+
     move() {
         var field = random(this.chooseNearFieldsByIndex(0));
         if (field) {
@@ -71,7 +67,7 @@ class gishatich {
         }
     }
     evolve() {
-        if (this.energy >= 7) {
+        if (this.energy >= 12) {
             this.energy = 5;
             var field = random(this.chooseNearFieldsByIndex(0));
             if (field) {

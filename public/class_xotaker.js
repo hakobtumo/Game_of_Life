@@ -16,13 +16,13 @@ class Xotaker extends LivingCreature{
         ];
     }
 
-    chooseCell(character) {
+    chooseNearFieldsByIndex(ch) {
         this.getNewCoordinates();
-        return super.chooseCell(character);
+        return super.chooseNearFieldsByIndex(ch);
     }
  
     move() {
-        var field = random(this.chooseCell(0));
+        var field = random(this.chooseNearFieldsByIndex(0));
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -34,7 +34,7 @@ class Xotaker extends LivingCreature{
         return false;
     }
     eat() {
-        var target = random(this.chooseCell(1));
+        var target = random(this.chooseNearFieldsByIndex(1));
         if (target) {
             matrix[this.y][this.x] = 0;
             this.x = target[0];
@@ -73,10 +73,10 @@ class Xotaker extends LivingCreature{
     evolve() {
         if (this.energy >= 7) {
             this.energy = 5;
-            var field = random(this.chooseCell(0));
+            var field = random(this.chooseNearFieldsByIndex(0));
             if (field) {
                 matrix[field[1]][field[0]] = this.index;
-                xotakerArr.push(new Xotaker(field[0], field[1]));
+                xotakerArr.push(new Xotaker(field[0], field[1],2));
                 return true;
             }
             // var field = random(this.chooseNearFieldsByIndex(1));
