@@ -62,41 +62,18 @@ var matrix = [
 ];
 
 var side = 10;
+var socket = io();
 
-var grassArr = [];
-var xotakerArr = [];
-var gishatichArr = [];
-var popoxakanArr = [];
-var popoxichArr=[]
+
 function setup() {
     frameRate(10);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-
-            if (matrix[y][x] == 1) {
-                grassArr.push(new Grass(x, y,1))
-            }
-            else if (matrix[y][x] == 2) {
-                xotakerArr.push(new Xotaker(x, y, 2))
-            }
-            else if (matrix[y][x] == 3) {
-                gishatichArr.push(new gishatich(x, y))
-            }
-            else if(matrix[y][x]==4){
-              popoxakanArr.push(new popoxakan(x,y))
-            }
-            else if(matrix[y][x]==5){
-                popoxichArr.push(new popoxich(x,y))
-            }
-        }
-    }
-
+   
 
 }
-function draw() {
+function drawMatrix(matrix) {
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -117,36 +94,18 @@ function draw() {
                 fill("red")
                 rect(x * side, y * side, side, side);
             }
-            else if(matrix[y][x]==4){
+            else if (matrix[y][x] == 4) {
                 fill("orange")
                 rect(x * side, y * side, side, side);
             }
-            else if(matrix[y][x]==5){
+            else if (matrix[y][x] == 5) {
                 fill("blue")
                 rect(x * side, y * side, side, side);
             }
         }
     }
-    for (var i in grassArr) {
-        grassArr[i].bazmanal();
-    }
-    for (var i in xotakerArr) {
-        xotakerArr[i].eat();
-        xotakerArr[i].evolve();
-        xotakerArr[i].hunt();
-    }
-    for (var i in gishatichArr) {
-        gishatichArr[i].eat()
-        gishatichArr[i].evolve();
-        gishatichArr[i].die()
-    }
-    for(var i in popoxakanArr){
-       popoxakanArr[i].eat()
-    }
-    for(var i in popoxichArr){
-        popoxichArr[i].eat()
-    }
 }
+socket.on('matrix', drawMatrix)
 
 
 

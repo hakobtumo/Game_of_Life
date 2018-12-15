@@ -30,7 +30,8 @@ module.exports=class popoxich{
     }
     
     move() {
-        var field = random(this.chooseNearFieldsByIndex(0));                          
+        var lll=this.chooseNearFieldsByIndex(0)
+        var field = lll[Math.floor(Math.random()*lll.lenght)];                         
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -39,7 +40,8 @@ module.exports=class popoxich{
         }
     }
     eat() {
-        var target = random(this.chooseNearFieldsByIndex(1));
+        var lll=this.chooseNearFieldsByIndex(1)
+        var target = lll[Math.floor(Math.random()*lll.lenght)];
         if (target) {
             matrix[this.y][this.x] = 3;
             gishatichArr.push(new gishatich(this.x, this.y));

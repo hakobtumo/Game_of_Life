@@ -1,10 +1,17 @@
 var express = require('express');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
+app.use(express.static("public"));
+app.get('/', function (req, res) {
+    res.redirect('index.html');
+});
+server.listen(3000);
 var fs = require("fs");
 
 
-var matrix = [
+matrix = [
     [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -67,19 +74,19 @@ var matrix = [
     [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-var side = 10;
 
-var grassArr = [];
-var xotakerArr = [];
-var gishatichArr = [];
-var popoxakanArr = [];
-var popoxichArr = [];
 
-var Grass=require('./class_xot.js')
-var Xotaker=require('./class_xotaker.js')
-var gishatich=require('./class_gishatich.js')
-var popoxakan=require('./class_popoxakan.js')
-var popoxich=require('./class_popoxich.js')
+grassArr = [];
+xotakerArr = [];
+gishatichArr = [];
+popoxakanArr = [];
+popoxichArr = [];
+
+var Grass = require('./classes/class_xot.js')
+var Xotaker = require('./classes/class_xotaker.js')
+var gishatich = require('./classes/class_gishatich.js')
+var popoxakan = require('./classes/class_popoxakan.js')
+var popoxich = require('./classes/class_popoxich.js')
 
 for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
@@ -102,65 +109,36 @@ for (var y = 0; y < matrix.length; y++) {
     }
 }
 
+io.on('connection', function (socket) {
+
+});
 
 
-
-
-for (var y = 0; y < matrix.length; y++) {
-    for (var x = 0; x < matrix[y].length; x++) {
-
-        if (matrix[y][x] == 1) {
-            fill("green");
-            rect(x * side, y * side, side, side);
-        }
-        else if (matrix[y][x] == 0) {
-            fill("#acacac");
-            rect(x * side, y * side, side, side);
-        }
-        else if (matrix[y][x] == 2) {
-            fill("yellow")
-            rect(x * side, y * side, side, side);
-        }
-        else if (matrix[y][x] == 3) {
-            fill("red")
-            rect(x * side, y * side, side, side);
-        }
-        else if (matrix[y][x] == 4) {
-            fill("orange")
-            rect(x * side, y * side, side, side);
-        }
-        else if (matrix[y][x] == 5) {
-            fill("blue")
-            rect(x * side, y * side, side, side);
-        }
+setInterval(serverDraw, 3000);
+function serverDraw() {
+    for (var i in grassArr) {
+        grassArr[i].bazmanal();
     }
+    for (var i in xotakerArr) {
+        xotakerArr[i].eat();
+        xotakerArr[i].evolve();
+        xotakerArr[i].hunt();
+    }
+    for (var i in gishatichArr) {
+        gishatichArr[i].eat();
+        gishatichArr[i].evolve();
+        gishatichArr[i].die()
+    }
+    for (var i in popoxakanArr) {
+        popoxakanArr[i].eat()
+    }
+    for (var i in popoxichArr) {
+        popoxichArr[i].eat()
+    }
+
+    io.sockets.emit('matrix', matrix)
 }
 
-app.get('/', function (req, res) {
-    server.listen(3000);
-    setInterval(serverDraw, 3000);
-    function serverDraw() {
-        for (var i in grassArr) {
-            grassArr[i].bazmanal();
-        }
-        for (var i in xotakerArr) {
-            xotakerArr[i].eat();
-            xotakerArr[i].evolve();
-            xotakerArr[i].hunt();
-        }
-        for (var i in gishatichArr) {
-            gishatichArr[i].eat()
-            gishatichArr[i].evolve();
-            gishatichArr[i].die()
-        }
-        for (var i in popoxakanArr) {
-            popoxakanArr[i].eat()
-        }
-        for (var i in popoxichArr) {
-            popoxichArr[i].eat()
-        }
-    }
-});
 
 
 

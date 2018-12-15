@@ -1,3 +1,4 @@
+var Xotaker=require("./class_xotaker")
 module.exports=class popoxakan {
     constructor(x, y) {
         this.x = x;
@@ -29,7 +30,8 @@ module.exports=class popoxakan {
         return found;
     }
     move() {
-        var field = random(this.chooseNearFieldsByIndex(0));
+        var lll=this.chooseNearFieldsByIndex(0)
+        var field = lll[Math.floor(Math.random()*lll.lenght)];
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -40,7 +42,8 @@ module.exports=class popoxakan {
         return false;
     }
     eat() {
-        var target = random(this.chooseNearFieldsByIndex(1));
+        var lll=this.chooseNearFieldsByIndex(1)
+        var target = lll[Math.floor(Math.random()*lll.lenght)];
         if (target) {
             matrix[this.y][this.x] = 2;
             xotakerArr.push(new Xotaker(this.x, this.y));
