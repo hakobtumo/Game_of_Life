@@ -4,16 +4,32 @@ module.exports = class LivingCreature {
         this.y = y;
         this.multiply = 0;
         this.index = index;
-        this.directions = [
-           [this.x - 1, this.y - 1],
-           [this.x, this.y - 1],
-           [this.x + 1, this.y - 1],
-           [this.x - 1, this.y],
-           [this.x + 1, this.y],
-           [this.x - 1, this.y + 1],
-           [this.x, this.y + 1],
-           [this.x + 1, this.y + 1]
-       ];
+        if(exanak=="garun" || exanak=="amar"){
+            this.directions = [
+                [this.x - 2, this.y - 2],
+                [this.x+1, this.y - 1],
+                [this.x + 2, this.y - 2],
+                [this.x - 2, this.y+1],
+                [this.x + 2, this.y+1],
+                [this.x - 2, this.y + 2],
+                [this.x+1, this.y + 2],
+                [this.x + 2, this.y + 2]
+            ];
+        }
+        else if(exanak=="ashun"|| exanak=="dzmer"){
+            this.directions = [
+                [this.x+1, this.y],
+                [this.x+1, this.y+1],
+                [this.x +1, this.y-1],
+                [this.x - 1, this.y],
+                [this.x -1, this.y+1],
+                [this.x -1, this.y-1],
+                [this.x, this.y + 1],
+                [this.x , this.y -1]
+            ];
+        }
+        
+       
  
     }
     chooseNearFieldsByIndex(ch) {

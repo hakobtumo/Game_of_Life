@@ -58,8 +58,8 @@ module.exports=class gishatich extends LivingCreature{
         }
         return false;
     }
-    die() {
-        if (this.energy <= 0) {
+    die(a) {
+        if (this.energy <= a) {
             matrix[this.y][this.x] = 0;
             for (var i in gishatichArr) {
                 if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
@@ -70,9 +70,9 @@ module.exports=class gishatich extends LivingCreature{
             }
         }
     }
-    evolve() {
+    evolve(a) {
         var lll=this.chooseNearFieldsByIndex(0)
-        if (this.energy >= 12) {
+        if (this.energy >= a) {
             this.energy = 5;
             var field = lll[Math.floor(Math.random()*lll.length)];
             if (field) {
