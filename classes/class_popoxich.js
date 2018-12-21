@@ -1,3 +1,4 @@
+var gishatich = require('./class_gishatich.js')
 module.exports=class popoxich{
     constructor(x, y) {
         this.x = x;
@@ -31,7 +32,7 @@ module.exports=class popoxich{
     
     move() {
         var lll=this.chooseNearFieldsByIndex(0)
-        var field = lll[Math.floor(Math.random()*lll.lenght)];                         
+        var field = lll[Math.floor(Math.random()*lll.length)];                         
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -41,7 +42,7 @@ module.exports=class popoxich{
     }
     eat() {
         var lll=this.chooseNearFieldsByIndex(1)
-        var target = lll[Math.floor(Math.random()*lll.lenght)];
+        var target = lll[Math.floor(Math.random()*lll.length)];
         if (target) {
             matrix[this.y][this.x] = 3;
             gishatichArr.push(new gishatich(this.x, this.y));

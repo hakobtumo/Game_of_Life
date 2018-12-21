@@ -1,3 +1,4 @@
+socket = io();
 var matrix = [
     [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -64,22 +65,37 @@ var matrix = [
 var side = 10;
 var socket = io();
 
+var ex = socket.on("exanaks", function (w) {
+    exanak = w;
+    console.log(exanak);
+});
 
 function setup() {
     frameRate(10);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 
-   
+
 
 }
 function drawMatrix(matrix) {
-
+    //console.log(matrix);
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                fill("green");
+                if (exanak == "garun") {
+                    fill("green");
+                }
+                else if(exanak=="amar"){
+                    fill("yellow")
+                }
+                else if(exanak=="ashun"){
+                    fill("purple")
+                }
+                else if(exanak=="dzmer"){
+                    fill("white")
+                }
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {

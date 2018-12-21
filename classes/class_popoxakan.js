@@ -31,7 +31,7 @@ module.exports=class popoxakan {
     }
     move() {
         var lll=this.chooseNearFieldsByIndex(0)
-        var field = lll[Math.floor(Math.random()*lll.lenght)];
+        var field = lll[Math.floor(Math.random()*lll.length)];
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -43,7 +43,7 @@ module.exports=class popoxakan {
     }
     eat() {
         var lll=this.chooseNearFieldsByIndex(1)
-        var target = lll[Math.floor(Math.random()*lll.lenght)];
+        var target = lll[Math.floor(Math.random()*lll.length)];
         if (target) {
             matrix[this.y][this.x] = 2;
             xotakerArr.push(new Xotaker(this.x, this.y));

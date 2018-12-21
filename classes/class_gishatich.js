@@ -26,7 +26,7 @@ module.exports=class gishatich extends LivingCreature{
 
     move() {
         var lll=this.chooseNearFieldsByIndex(0)
-        var field = lll[Math.floor(Math.random()*lll.lenght)];
+        var field = lll[Math.floor(Math.random()*lll.length)];
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -39,7 +39,7 @@ module.exports=class gishatich extends LivingCreature{
     }
     eat() {
         var lll=this.chooseNearFieldsByIndex(2)
-        var target = lll[Math.floor(Math.random()*lll.lenght)];
+        var target = lll[Math.floor(Math.random()*lll.length)];
         if (target) {
             matrix[this.y][this.x] = 0;
             this.x = target[0];
@@ -74,7 +74,7 @@ module.exports=class gishatich extends LivingCreature{
         var lll=this.chooseNearFieldsByIndex(0)
         if (this.energy >= 12) {
             this.energy = 5;
-            var field = lll[Math.floor(Math.random()*lll.lenght)];
+            var field = lll[Math.floor(Math.random()*lll.length)];
             if (field) {
                 matrix[field[1]][field[0]] = 3;
                 gishatichArr.push(new gishatich(field[0], field[1]));

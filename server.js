@@ -74,14 +74,14 @@ matrix = [
     [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-
+weather=["garun","amar","ashun","dzmer"];
 
 grassArr = [];
 xotakerArr = [];
 gishatichArr = [];
 popoxakanArr = [];
 popoxichArr = [];
-
+exanak="garun";
 var Grass = require('./classes/class_xot.js')
 var Xotaker = require('./classes/class_xotaker.js')
 var gishatich = require('./classes/class_gishatich.js')
@@ -114,9 +114,27 @@ io.on('connection', function (socket) {
 });
 
 
-setInterval(serverDraw, 3000);
+setInterval(serverDraw, 1000);
+
+
+time=0
 function serverDraw() {
+    time++
+    if(time%40 < 10){
+        exanak=weather[1];
+    }
+    else if(time%40 < 20){
+        exanak=weather[2]
+    }
+    else if(time%40 < 30){
+        exanak=weather[3]
+    }
+    else if(time%40 < 40){
+        exanak=weather[0]
+    }
+
     for (var i in grassArr) {
+       
         grassArr[i].bazmanal();
     }
     for (var i in xotakerArr) {
@@ -135,8 +153,10 @@ function serverDraw() {
     for (var i in popoxichArr) {
         popoxichArr[i].eat()
     }
-
-    io.sockets.emit('matrix', matrix)
+    //console.log(matrix)
+    console.log(exanak)
+    io.sockets.emit('matrix', matrix);
+    io.sockets.emit("exanaks",exanak)
 }
 
 
