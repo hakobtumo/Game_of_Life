@@ -64,12 +64,11 @@ matrix = [
 
 var side = 15;
 var socket = io();
-exanak="dzmer";
-var weatherP= document.getElementById("weather")
+exanak = "dzmer";
+var weatherP = document.getElementById("weather")
 
 var ex = socket.on("exanaks", function (w) {
     exanak = w;
-    
     weatherP.innerHTML = exanak;
 });
 
@@ -150,8 +149,18 @@ function drawMatrix(matrix) {
         }
     }
 }
+   
+
+
 socket.on('matrix', drawMatrix)
 
+var killButton = document.getElementById('kill');
+
+function killAll() {
+
+    socket.emit("kill all god")
+}
+killButton.onclick = killAll;
 
 
 
