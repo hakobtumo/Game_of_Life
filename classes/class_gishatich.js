@@ -73,6 +73,7 @@ module.exports=class gishatich extends LivingCreature{
     evolve(a) {
         var lll=this.chooseNearFieldsByIndex(0)
         if (this.energy >= a) {
+            gishatichsBorn++
             this.energy = 5;
             var field = lll[Math.floor(Math.random()*lll.length)];
             if (field) {

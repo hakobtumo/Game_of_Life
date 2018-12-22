@@ -2,6 +2,19 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var fs = require("fs")
+
+
+
+var killButton = document.getElementById('kill');
+
+function killAll() {
+    matrix=0
+}
+
+
+
+button.onclick = killAll;
 
 app.use(express.static("public"));
 app.get('/', function (req, res) {
@@ -10,7 +23,9 @@ app.get('/', function (req, res) {
 server.listen(3000);
 var fs = require("fs");
 
-
+ grassesBorn = 0;
+ grassEatersBorn = 0;
+gishatichsBorn = 0;
 matrix = [
     [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -74,14 +89,14 @@ matrix = [
     [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-weather=["dzmer","garun","amar","ashun"];
+weather = ["dzmer", "garun", "amar", "ashun"];
 
 grassArr = [];
 xotakerArr = [];
 gishatichArr = [];
 popoxakanArr = [];
 popoxichArr = [];
-exanak="dzmer";
+exanak = "dzmer";
 var Grass = require('./classes/class_xot.js')
 var Xotaker = require('./classes/class_xotaker.js')
 var gishatich = require('./classes/class_gishatich.js')
@@ -93,12 +108,15 @@ for (var y = 0; y < matrix.length; y++) {
 
         if (matrix[y][x] == 1) {
             grassArr.push(new Grass(x, y, 1))
+            grassesBorn++
         }
         else if (matrix[y][x] == 2) {
             xotakerArr.push(new Xotaker(x, y, 2))
+            grassEatersBorn++
         }
         else if (matrix[y][x] == 3) {
             gishatichArr.push(new gishatich(x, y))
+            gishatichsBorn++
         }
         else if (matrix[y][x] == 4) {
             popoxakanArr.push(new popoxakan(x, y))
@@ -117,49 +135,49 @@ io.on('connection', function (socket) {
 setInterval(serverDraw, 1000);
 
 
-time=0
+time = 0
 function serverDraw() {
     time++
-    if(time%40 < 10){
-        exanak=weather[1];
+    if (time % 40 < 10) {
+        exanak = weather[1];
     }
-    else if(time%40 < 20){
-        exanak=weather[2]
+    else if (time % 40 < 20) {
+        exanak = weather[2]
     }
-    else if(time%40 < 30){
-        exanak=weather[3]
+    else if (time % 40 < 30) {
+        exanak = weather[3]
     }
-    else if(time%40 < 40){
-        exanak=weather[0]
+    else if (time % 40 < 40) {
+        exanak = weather[0]
     }
 
     for (var i in grassArr) {
-       
+
         grassArr[i].bazmanal();
     }
     for (var i in xotakerArr) {
-        if(exanak=="garun" || exanak=="amar"){
-        xotakerArr[i].eat();
-        xotakerArr[i].evolve(7);
-        xotakerArr[i].hunt(0);
+        if (exanak == "garun" || exanak == "amar") {
+            xotakerArr[i].eat();
+            xotakerArr[i].evolve(7);
+            xotakerArr[i].hunt(0);
         }
-        else if(exanak=="ashun" || exanak=="dzmer"){
+        else if (exanak == "ashun" || exanak == "dzmer") {
             xotakerArr[i].eat();
             xotakerArr[i].evolve(9);
             xotakerArr[i].hunt(4);
-            }
+        }
     }
     for (var i in gishatichArr) {
-        if(exanak=="garun" || exanak=="amar"){
+        if (exanak == "garun" || exanak == "amar") {
             gishatichArr[i].eat();
             gishatichArr[i].evolve(10);
             gishatichArr[i].die(0)
-            }
-            else if(exanak=="ashun" || exanak=="dzmer"){
-                gishatichArr[i].eat();
-                gishatichArr[i].evolve(13);
-                gishatichArr[i].die(5)
-                }
+        }
+        else if (exanak == "ashun" || exanak == "dzmer") {
+            gishatichArr[i].eat();
+            gishatichArr[i].evolve(13);
+            gishatichArr[i].die(5)
+        }
     }
     for (var i in popoxakanArr) {
         popoxakanArr[i].eat()
@@ -170,8 +188,19 @@ function serverDraw() {
     //console.log(matrix)
     console.log(exanak)
     io.sockets.emit('matrix', matrix);
-    io.sockets.emit("exanaks",exanak)
+    io.sockets.emit("exanaks", exanak)
 }
+var statistics = {"a":[]};
+setInterval(function () {
+    statistics.a.push({
+        "GrassesBorn": grassesBorn,
+        "GrassEatersBorn": grassEatersBorn,
+        "GishatichsBorn": gishatichsBorn,
+    });
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function (err) {
+        if (err) throw (err)
+    })
+}, 3000)
 
 
 

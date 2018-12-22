@@ -64,11 +64,15 @@ matrix = [
 
 var side = 15;
 var socket = io();
+exanak="dzmer";
+var weatherP= document.getElementById("weather")
 
 var ex = socket.on("exanaks", function (w) {
     exanak = w;
-    console.log(exanak);
+    
+    weatherP.innerHTML = exanak;
 });
+
 
 function setup() {
     frameRate(16);
@@ -85,18 +89,18 @@ function drawMatrix(matrix) {
 
             if (matrix[y][x] == 1) {
                 if (exanak == "garun") {
-                    fill(0,255,0);
+                    fill(0, 255, 0);
                 }
-                else if(exanak=="amar"){
-                    fill(0,155,0)
+                else if (exanak == "amar") {
+                    fill(0, 155, 0)
                 }
-                else if(exanak=="ashun"){
-                    fill(0,75,0)
+                else if (exanak == "ashun") {
+                    fill(0, 75, 0)
                 }
-                else if(exanak=="dzmer"){
+                else if (exanak == "dzmer") {
                     fill("white")
                 }
-                
+
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {
@@ -105,33 +109,33 @@ function drawMatrix(matrix) {
             }
             else if (matrix[y][x] == 2) {
                 if (exanak == "garun") {
-                    fill(247,255,0);
+                    fill(247, 255, 0);
                 }
-                else if(exanak=="amar"){
-                    fill(195,201,36)
+                else if (exanak == "amar") {
+                    fill(195, 201, 36)
                 }
-                
-                else if(exanak=="ashun"){
-                    fill(182,157,59)
+
+                else if (exanak == "ashun") {
+                    fill(182, 157, 59)
                 }
-                else if(exanak=="dzmer"){
-                    fill(110,99,33)
+                else if (exanak == "dzmer") {
+                    fill(110, 99, 33)
                 }
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 3) {
                 if (exanak == "garun") {
-                    fill(255,0,0);
+                    fill(255, 0, 0);
                 }
-                else if(exanak=="amar"){
-                    fill(210,50,50)
+                else if (exanak == "amar") {
+                    fill(210, 50, 50)
                 }
-                
-                else if(exanak=="ashun"){
-                    fill(127,40,40)
+
+                else if (exanak == "ashun") {
+                    fill(127, 40, 40)
                 }
-                else if(exanak=="dzmer"){
-                    fill(170,100,100)
+                else if (exanak == "dzmer") {
+                    fill(170, 100, 100)
                 }
                 rect(x * side, y * side, side, side);
             }
