@@ -85,6 +85,7 @@ xotakerArr = [];
 gishatichArr = [];
 popoxakanArr = [];
 popoxichArr = [];
+
 exanak = "Ձմեռ";
 var Grass = require('./classes/class_xot.js')
 var Xotaker = require('./classes/class_xotaker.js')
@@ -204,6 +205,8 @@ setInterval(serverDraw, 1000);
 
 time = 0
 function serverDraw() {
+    io.sockets.emit('number',[grassArr.length,xotakerArr.length,gishatichArr.length])
+    io.sockets.emit('born',[grassesBorn,grassEatersBorn,gishatichsBorn])
     time++
     if (time % 40 < 10) {
         exanak = weather[1];

@@ -73,7 +73,23 @@ var ex = socket.on("exanaks", function (w) {
     weatherP.innerHTML = exanak;
 });
 
-
+socket.on('number',function(len){
+    let gr=document.getElementById('grNum');
+    let grE=document.getElementById('grEaNum')
+    let hun=document.getElementById('hun')
+    gr.innerHTML=len[0];
+    grE.innerHTML=len[1];
+    hun.innerHTML=len[2]
+    
+})
+socket.on('born',function(born){
+    let gre=document.getElementById('grBorn');
+    let grE=document.getElementById("BornGrE");
+    let hun=document.getElementById("bornHun");
+    gre.innerHTML=born[0];
+    grE.innerHTML=born[1];
+    hun.innerHTML=born[2]
+})
 function setup() {
     frameRate(16);
     createCanvas(matrix[0].length * side, matrix.length * side);

@@ -6,22 +6,79 @@
 	<meta charset="utf8">
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		span {
+			display: inline-block;
+			color: rgb(255, 0, 0);
+			font-size: 50px;
+		}
+
+		#weather {
+			margin: 0;
+			display: inline-block;
+		}
+
+		.tools {
+			position: absolute;
+			left: 40%;
+		}
+
+		.weatherDiv {
+			margin-bottom: 10px;
+		}
+	</style>
 </head>
 
 <!-- <body style="background-image: url(http://www.textures4photoshop.com/tex/thumbs/matrix-code-animation-gif-free-animated-background-716.gif)"> -->
-<body >
 
-	<p id="weather" style="color:rgb(255, 0, 0);font-size:50px;"></p>
-	<div style="margin-left:1000px">
-		<h1 style="color:red">God's tool</h1>
-	<ul>
-		<li><button style="color:rgb(17, 0, 255)" id="kill">RESTART THE WORLD!!!!</button></li>
-	</ul>
+<body>
+
+	<div class="weatherDiv">
+		<span>Weather:</span>
+		<p id="weather" style="color:rgb(255, 0, 0);font-size:50px;"></p>
 	</div>
+	<div class="tools">
+		<h1 style="color:red">God's tool</h1>
+		<ul>
+			<li>
+				<button style="color:rgb(17, 0, 255)" id="kill">RESTART THE WORLD!!!!</button>
+			</li>
+		</ul>
+	</div>
+	<table border="1">
+		<tr class="heading_table">
+			<th></th>
+			<th class="sss">Grass</th>
+			<th>GrassEather</th>
+			<th>Hunter</th>
+		</tr>
+		<tr>
+			<td>Number</td>
+			<td id="grNum"></td>
+			<td id="grEaNum"></td>
+			<td id="hun"></td>
+		</tr>
+		<tr>
+			<td>Died</td>
+			<td>We don't die</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>born</td>
+			<td id="grBorn"></td>
+			<td id="BornGrE"></td>
+			<td id="bornHun"></td>
+		</tr>
+		<tr>
+			<td>Ate</td>
+			<td>We don't eat</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
 	<script type="text/javascript" src="script.js"></script>
 
 </body>
