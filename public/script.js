@@ -64,7 +64,8 @@ matrix = [
 
 var side = 15;
 var socket = io();
-exanak = "dzmer";
+
+exanak = "Ձմեռ";
 var weatherP = document.getElementById("weather")
 
 var ex = socket.on("exanaks", function (w) {
@@ -85,18 +86,17 @@ function drawMatrix(matrix) {
     //console.log(matrix);
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-
             if (matrix[y][x] == 1) {
-                if (exanak == "garun") {
+                if (exanak == "Գարուն") {
                     fill(0, 255, 0);
                 }
-                else if (exanak == "amar") {
+                else if (exanak == "Ամառ") {
                     fill(0, 155, 0)
                 }
-                else if (exanak == "ashun") {
+                else if (exanak == "Աշուն") {
                     fill(0, 75, 0)
                 }
-                else if (exanak == "dzmer") {
+                else if (exanak == "Ձմեռ") {
                     fill("white")
                 }
 
@@ -106,34 +106,36 @@ function drawMatrix(matrix) {
                 fill("#acacac");
                 rect(x * side, y * side, side, side);
             }
+            
             else if (matrix[y][x] == 2) {
-                if (exanak == "garun") {
+                if (exanak == "Գարուն") {
                     fill(247, 255, 0);
                 }
-                else if (exanak == "amar") {
+                else if (exanak == "Ամառ") {
                     fill(195, 201, 36)
                 }
 
-                else if (exanak == "ashun") {
+                else if (exanak == "Աշուն") {
                     fill(182, 157, 59)
                 }
-                else if (exanak == "dzmer") {
+                else if (exanak == "Ձմեռ") {
                     fill(110, 99, 33)
                 }
                 rect(x * side, y * side, side, side);
             }
+            
             else if (matrix[y][x] == 3) {
-                if (exanak == "garun") {
+                if (exanak == "Գարուն") {
                     fill(255, 0, 0);
                 }
-                else if (exanak == "amar") {
+                else if (exanak == "Ամառ") {
                     fill(210, 50, 50)
                 }
 
-                else if (exanak == "ashun") {
+                else if (exanak == "Աշուն") {
                     fill(127, 40, 40)
                 }
-                else if (exanak == "dzmer") {
+                else if (exanak == "Ձմեռ") {
                     fill(170, 100, 100)
                 }
                 rect(x * side, y * side, side, side);

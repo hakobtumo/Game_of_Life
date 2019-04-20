@@ -4,7 +4,7 @@ module.exports = class LivingCreature {
         this.y = y;
         this.multiply = 0;
         this.index = index;
-        if(exanak=="garun" || exanak=="amar"){
+        if(exanak=="Գարուն" || exanak=="Ամառ"){
             this.directions = [
                 [this.x - 2, this.y - 2],
                 [this.x+1, this.y - 1],
@@ -16,7 +16,7 @@ module.exports = class LivingCreature {
                 [this.x + 2, this.y + 2]
             ];
         }
-        else if(exanak=="ashun"|| exanak=="dzmer"){
+        else if(exanak=="Աշուն"|| exanak=="Ձմեռ"){
             this.directions = [
                 [this.x+1, this.y],
                 [this.x+1, this.y+1],

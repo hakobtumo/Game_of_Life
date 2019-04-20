@@ -78,14 +78,14 @@ matrix = [
     [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-weather = ["dzmer", "garun", "amar", "ashun"];
+weather = ["Ձմեռ", "Գարուն", "Ամառ", "Աշուն"];
 
 grassArr = [];
 xotakerArr = [];
 gishatichArr = [];
 popoxakanArr = [];
 popoxichArr = [];
-exanak = "dzmer";
+exanak = "Ձմեռ";
 var Grass = require('./classes/class_xot.js')
 var Xotaker = require('./classes/class_xotaker.js')
 var gishatich = require('./classes/class_gishatich.js')
@@ -219,29 +219,27 @@ function serverDraw() {
     }
 
     for (var i in grassArr) {
-
         grassArr[i].bazmanal();
     }
     for (var i in xotakerArr) {
-
-        if (exanak == "garun" || exanak == "amar") {
+        if (exanak == "Գարուն" || exanak == "Ամառ") {
             xotakerArr[i].eat();
             xotakerArr[i].evolve(7);
             xotakerArr[i].hunt(0);
         }
-        else if (exanak == "ashun" || exanak == "dzmer") {
+        else if (exanak == "Աշուն" || exanak == "Ձմեռ") {
             xotakerArr[i].eat();
             xotakerArr[i].evolve(9);
             xotakerArr[i].hunt(4);
         }
     }
     for (var i in gishatichArr) {
-        if (exanak == "garun" || exanak == "amar") {
+        if (exanak == "Գարուն" || exanak == "Ամառ") {
             gishatichArr[i].eat();
             gishatichArr[i].evolve(10);
             gishatichArr[i].die(0)
         }
-        else if (exanak == "ashun" || exanak == "dzmer") {
+        else if (exanak == "Աշուն" || exanak == "Ձմեռ") {
             gishatichArr[i].eat();
             gishatichArr[i].evolve(13);
             gishatichArr[i].die(5)
