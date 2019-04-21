@@ -1,13 +1,19 @@
 table{
     position: absolute;
     left:55%; 
+    top:10%;
     border-collapse:collapse;
     border: 2px solid black;
+}
+#defaultCanvas0{
+    border:10px solid rgb(134, 134, 0);
+    margin:10px;
+    float: left;
 }
 td,th{
     font-size:23px;
     width:140px;
-    height:50px;
+    height:80px;
     border: 2px solid black;
     text-align: center;
 }

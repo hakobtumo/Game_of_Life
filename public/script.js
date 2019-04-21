@@ -74,21 +74,26 @@ var ex = socket.on("exanaks", function (w) {
 });
 
 socket.on('number',function(len){
-    let gr=document.getElementById('grNum');
-    let grE=document.getElementById('grEaNum')
-    let hun=document.getElementById('hun')
-    gr.innerHTML=len[0];
-    grE.innerHTML=len[1];
-    hun.innerHTML=len[2]
-    
+    let grass=document.getElementById('grNum');
+    let grEater=document.getElementById('grEaNum')
+    let hunter=document.getElementById('hun')
+    grass.innerHTML=len[0];
+    grEater.innerHTML=len[1];
+    hunter.innerHTML=len[2]
 })
-socket.on('born',function(born){
-    let gre=document.getElementById('grBorn');
-    let grE=document.getElementById("BornGrE");
-    let hun=document.getElementById("bornHun");
-    gre.innerHTML=born[0];
-    grE.innerHTML=born[1];
-    hun.innerHTML=born[2]
+
+
+socket.on('statistics',function(stat){
+    let table=document.getElementById('table_statistics');
+    table.rows[2].cells[2].innerHTML=stat.died.grassEaters;
+    table.rows[2].cells[3].innerHTML=stat.died.hunters;
+    table.rows[3].cells[1].innerHTML=stat.killed.grasses;
+    table.rows[3].cells[2].innerHTML=stat.killed.grassEaters;
+    table.rows[4].cells[1].innerHTML=stat.born.grasses;
+    table.rows[4].cells[2].innerHTML=stat.born.grassEaters;
+    table.rows[4].cells[3].innerHTML=stat.born.hunters;
+    table.rows[5].cells[2].innerHTML=stat.ate.grassEaters;
+    table.rows[5].cells[3].innerHTML=stat.ate.hunters;
 })
 function setup() {
     frameRate(16);

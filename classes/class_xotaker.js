@@ -44,6 +44,8 @@ module.exports=class Xotaker extends LivingCreature{
             this.x = target[0];
             this.y = target[1];
             matrix[this.y][this.x] = this.index;
+            charecterStatistic.ate.grassEaters++;
+            charecterStatistic.killed.grasses++;
             for (var i in grassArr) {
                 if (grassArr[i].x == target[0] && grassArr[i].y == target[1]) {
                     grassArr.splice(i, 1);
@@ -59,25 +61,21 @@ module.exports=class Xotaker extends LivingCreature{
     }
     hunt(a) {
         if (this.energy <= a) {
+            charecterStatistic.died.grassEaters++;
             matrix[this.y][this.x] = 0;
             for (var i in xotakerArr) {
                 if (xotakerArr[i].x == this.x && xotakerArr[i].y == this.y) {
                     xotakerArr.splice(i, 1);
-                    // delete this;
-                    // return false;
+                    
                 }
             }
         }
-        // if (!this.evolve()) {
-        //     if (!this.eat()) {
-        //         this.move();
-        //     }
-        // }
+       
     }
     evolve(a) {
         var lll=this.chooseNearFieldsByIndex(0)
         if (this.energy >= a) {
-            grassEatersBorn++
+            charecterStatistic.born.grassEaters++;
             this.energy = 5;
             var field = lll[Math.floor(Math.random()*lll.length)];
             if (field) {
@@ -85,17 +83,6 @@ module.exports=class Xotaker extends LivingCreature{
                 xotakerArr.push(new Xotaker(field[0], field[1],2));
                 return true;
             }
-            // var field = random(this.chooseNearFieldsByIndex(1));
-            // if (field) {
-            //     matrix[field[1]][field[0]] = this.index;
-            //     xotakerArr.push(new Xotaker(field[0], field[1]));
-            //     for (var i in grassArr) {
-            //         if (grassArr[i].x == field[0] && grassArr[i].y == field[1]) {
-            //             grassArr.splice(i, 1);
-            //             return true;
-            //         }
-            //     }
-            // }
         }
     }
 }

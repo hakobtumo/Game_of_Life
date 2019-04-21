@@ -21,8 +21,10 @@
 		}
 
 		.tools {
-			position: absolute;
-			left: 40%;
+			font-size:1.7em;
+			display: inline-block;
+			margin: 5px;
+			
 		}
 
 		.weatherDiv {
@@ -43,14 +45,14 @@
 		<h1 style="color:red">God's tool</h1>
 		<ul>
 			<li>
-				<button style="color:rgb(17, 0, 255)" id="kill">RESTART THE WORLD!!!!</button>
+				<button style="color:rgb(17, 0, 255);font-size:19px" id="kill">RESTART THE WORLD!!!!</button>
 			</li>
 		</ul>
 	</div>
-	<table border="1">
+	<table border="1" id="table_statistics">
 		<tr class="heading_table">
 			<th></th>
-			<th class="sss">Grass</th>
+			<th>Grass</th>
 			<th>GrassEather</th>
 			<th>Hunter</th>
 		</tr>
@@ -67,10 +69,16 @@
 			<td></td>
 		</tr>
 		<tr>
+			<td>Killed</td>
+			<td></td>
+			<td></td>
+			<td>No one can kill us</td>
+		</tr>
+		<tr>
 			<td>born</td>
-			<td id="grBorn"></td>
-			<td id="BornGrE"></td>
-			<td id="bornHun"></td>
+			<td></td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>Ate</td>

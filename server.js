@@ -12,9 +12,32 @@ app.get('/', function (req, res) {
 server.listen(3000);
 var fs = require("fs");
 
-grassesBorn = 0;
-grassEatersBorn = 0;
-gishatichsBorn = 0;
+grassArr = [];
+xotakerArr = [];
+gishatichArr = [];
+popoxakanArr = [];
+popoxichArr = [];
+
+charecterStatistic={
+    died:{
+        grassEaters:0,
+        hunters:0,
+    },
+    killed:{
+        grasses:0,
+        grassEaters:0,
+    },
+    born:{
+        grasses:0,
+        grassEaters:0,
+        hunters:0,
+    },
+    ate:{
+        grassEaters:0,
+        hunters:0,
+    },
+}
+
 matrix = [
     [4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -77,14 +100,23 @@ matrix = [
     [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
+// let a=0;
+// for(var y=0;y<100;y++){
+//     matrix[y]=[]
+//     for(var x=0;x<100;x++){
+//        var rand=Math.random()*100;
+//        if(rand<=10)a=0;
+//        else if(rand<=60)a=1;
+//        else if(rand<=80)a=2;
+//        else if(rand<=95)a=3;
+//        else if(rand<=98)a=4;
+//        else if(rand<=100)a=5;
+//        matrix[y][x]=a
+//     }
+// }
 
 weather = ["Ձմեռ", "Գարուն", "Ամառ", "Աշուն"];
 
-grassArr = [];
-xotakerArr = [];
-gishatichArr = [];
-popoxakanArr = [];
-popoxichArr = [];
 
 exanak = "Ձմեռ";
 var Grass = require('./classes/class_xot.js')
@@ -100,15 +132,15 @@ function start() {
 
             if (matrix[y][x] == 1) {
                 grassArr.push(new Grass(x, y, 1))
-                grassesBorn++
+                
             }
             else if (matrix[y][x] == 2) {
                 xotakerArr.push(new Xotaker(x, y, 2))
-                grassEatersBorn++
+                
             }
             else if (matrix[y][x] == 3) {
                 gishatichArr.push(new gishatich(x, y))
-                gishatichsBorn++
+                
             }
             else if (matrix[y][x] == 4) {
                 popoxakanArr.push(new popoxakan(x, y))
@@ -120,6 +152,7 @@ function start() {
     }
 }
 start();
+
 
 
 io.on('connection', function (socket) {
@@ -206,7 +239,9 @@ setInterval(serverDraw, 1000);
 time = 0
 function serverDraw() {
     io.sockets.emit('number',[grassArr.length,xotakerArr.length,gishatichArr.length])
-    io.sockets.emit('born',[grassesBorn,grassEatersBorn,gishatichsBorn])
+    // io.sockets.emit('born',[grassesBorn,grassEatersBorn,gishatichsBorn])
+    // io.sockets.emit('diedNum',[diedGrassEatherNum,diedHunterNum])
+    io.sockets.emit('statistics',charecterStatistic);
     time++
     if (time % 40 < 10) {
         exanak = weather[1];
@@ -262,9 +297,9 @@ function serverDraw() {
 var statistics = { "a": [] };
 setInterval(function () {
     statistics.a.push({
-        "GrassesBorn": grassesBorn,
-        "GrassEatersBorn": grassEatersBorn,
-        "GishatichsBorn": gishatichsBorn,
+        "GrassesBorn": charecterStatistic.born.grasses,
+        "GrassEatersBorn": charecterStatistic.born.grassEaters,
+        "GishatichsBorn": charecterStatistic.born.hunters,
     });
     fs.writeFile("statistics.json", JSON.stringify(statistics), function (err) {
         if (err) throw (err)
