@@ -5,7 +5,7 @@ module.exports=class Grass extends LivingCreature {
         var lll=this.chooseNearFieldsByIndex(0)
         var norVandak =lll[Math.floor(Math.random()*lll.length)];
         /*console.log(norVandak, this.multiply);*/
-        if (this.multiply >= 5 && norVandak) {
+        if (this.multiply >= 2 && norVandak) {
             charecterStatistic.born.grasses++;
             var norXot = new Grass(norVandak[0], norVandak[1]);
             grassArr.push(norXot);

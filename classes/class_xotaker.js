@@ -32,9 +32,7 @@ module.exports=class Xotaker extends LivingCreature{
             this.y = field[1];
             matrix[this.y][this.x] = this.index;
             this.energy--;
-            return true;
         }
-        return false;
     }
     eat() {
         var lll=this.chooseNearFieldsByIndex(1)
@@ -50,14 +48,14 @@ module.exports=class Xotaker extends LivingCreature{
                 if (grassArr[i].x == target[0] && grassArr[i].y == target[1]) {
                     grassArr.splice(i, 1);
                     this.energy++;
-                    return true;
+                   
                 }
             }
         }
         else {
             this.move();
         }
-        return false;
+        
     }
     hunt(a) {
         if (this.energy <= a) {
@@ -81,7 +79,6 @@ module.exports=class Xotaker extends LivingCreature{
             if (field) {
                 matrix[field[1]][field[0]] = this.index;
                 xotakerArr.push(new Xotaker(field[0], field[1],2));
-                return true;
             }
         }
     }
