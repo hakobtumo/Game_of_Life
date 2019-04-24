@@ -1,5 +1,5 @@
 socket = io();
-var side = 20;
+var side = 23;
 var socket = io();
 
 exanak = "Ձմեռ";
@@ -37,7 +37,7 @@ socket.on('statistics', function (stat) {
 
 function setup() {
     frameRate(16);
-    createCanvas(50 * side, 50 * side);
+    createCanvas(40 * side, 40 * side);
     background('#acacac');
 }
 
@@ -46,11 +46,11 @@ function drawMatrix(matrix) {
 
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
+            
             if (matrix[y][x] == 6) {
                 fill('black');
-                rect(x * side, y * side, side, side);
             }
-            else if(matrix[y][x]==7){
+            else if (matrix[y][x] == 7) {
                 fill('#6C3483');
             }
             else if (matrix[y][x] == 1) {
@@ -66,14 +66,10 @@ function drawMatrix(matrix) {
                 else if (exanak == "Ձմեռ") {
                     fill("white")
                 }
-
-                rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {
                 fill("#acacac");
-                rect(x * side, y * side, side, side);
             }
-
             else if (matrix[y][x] == 2) {
                 if (exanak == "Գարուն") {
                     fill(247, 255, 0);
@@ -81,14 +77,12 @@ function drawMatrix(matrix) {
                 else if (exanak == "Ամառ") {
                     fill(195, 201, 36)
                 }
-
                 else if (exanak == "Աշուն") {
                     fill(182, 157, 59)
                 }
                 else if (exanak == "Ձմեռ") {
                     fill(110, 99, 33)
                 }
-                rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 3) {
                 if (exanak == "Գարուն") {
@@ -97,48 +91,41 @@ function drawMatrix(matrix) {
                 else if (exanak == "Ամառ") {
                     fill(210, 50, 50)
                 }
-
                 else if (exanak == "Աշուն") {
                     fill(127, 40, 40)
                 }
                 else if (exanak == "Ձմեռ") {
                     fill(170, 100, 100)
                 }
-                rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 4) {
                 fill("orange")
-                rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 5) {
                 fill("blue")
-                rect(x * side, y * side, side, side);
             }
+            rect(x * side, y * side, side, side);
         }
     }
 }
 
-
-
 socket.on('matrix', drawMatrix)
 
-
-
-var killButton = document.getElementById('kill');
 function killAll() {
-    
-    socket.emit("kill all god");
+    socket.emit("kill");
+    var el=document.getElementById('killer');
     // var elem = document.getElementById('weather');
     // elem.parentNode.removeChild(elem);
 }
-killButton.onclick = killAll;
 
-
-var stromButton=document.getElementById('Call_Storm');
-function stormCall(){
+function stormCall() {
     socket.emit('stormCall')
 }
-stromButton.onclick=stormCall;
+
+function pushGrasses(){
+    socket.emit('pushGrasses')
+}
+
 
 
 

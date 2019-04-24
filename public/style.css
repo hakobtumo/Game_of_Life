@@ -10,6 +10,10 @@ table{
     margin:10px;
     float: left;
 }
+li{
+    margin:5px;
+    padding:10px;
+}
 td,th{
     font-size:23px;
     width:140px;

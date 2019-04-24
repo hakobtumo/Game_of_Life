@@ -73,15 +73,15 @@ module.exports=class Boom {
     }
     kill() {
 
-        if (this.radiation == 1) {
+        if (this.radiation == 0) {
             this.getSlowDirections()
 
         }
-        else if (this.radiation == 2) {
+        else if (this.radiation == 1) {
             this.getMediumDirections()
 
         }
-        else if (this.radiation == 3) {
+        else if (this.radiation == 2) {
             this.getStrongDirections()
 
         }
@@ -97,7 +97,7 @@ module.exports=class Boom {
                         }
                     }
                 }
-                if (matrix[y][x] == 2) {
+                else if (matrix[y][x] == 2) {
                     for (var l in xotakerArr) {
                         if (x == xotakerArr[l].x && y == xotakerArr[l].y) {
                             xotakerArr.splice(l, 1);
@@ -105,7 +105,7 @@ module.exports=class Boom {
                         }
                     }
                 }
-                if (matrix[y][x] == 3) {
+                else if (matrix[y][x] == 3) {
                     for (var l in gishatichArr) {
                         if (x == gishatichArr[l].x && y == gishatichArr[l].y) {
                             gishatichArr.splice(l, 1);
@@ -114,40 +114,36 @@ module.exports=class Boom {
                     }
                 }
                 matrix[y][x] = 0;
-                // if (i % 6 == 0 && i % 4 == 0 && this.radiation == 3) {
-                //     matrix[y][x] = 2;
-                //     xotakerArr.push(new Xotaker(x, y))
-                // }
-                // else if (i % 4 == 0 && this.radiation == 2) {
-                //     matrix[y][x] = 3;
-                //     gishatichArr.push(new gishatich(x, y))
-                // }
-                // else if (i % 2 == 0 && this.radiation == 1) {
-                //     matrix[y][x] = 3;
-                //     gishatichArr.push(new gishatich(x, y))
-                // }
             }
         }
-
-        this.die()
-
-        this.born()
-
-    }
-    die() {
-        matrix[this.y][this.x] = 0;
-        for (var i in boomArr) {
-            if (this.x == boomArr[i].x && this.y == boomArr[i].y) {
-                boomArr.splice(i, 1)
-                break;
-            }
-        }
-    }
-    born() {
+        matrix[this.y][this.x]=0;
         var x = Math.floor(Math.random()*matrix[0].length)
         var y = Math.floor(Math.random()*matrix.length)
-        var rad = 3
-        matrix[y][x] = 6;
-        boomArr.push(new Boom(x, y, rad))
+        var radiation=Math.floor(Math.random()*3)
+        this.radiation=radiation;
+        this.x=x;
+        this.y=y;
+        matrix[this.y][this.x]=6;
+        
+        // this.die()
+
+        // this.born()
+
     }
+    // die() {
+    //     matrix[this.y][this.x] = 0;
+    //     for (var i in boomArr) {
+    //         if (this.x == boomArr[i].x && this.y == boomArr[i].y) {
+    //             boomArr.splice(i, 1)
+    //             break;
+    //         }
+    //     }
+    // }
+    // born() {
+    //     var x = Math.floor(Math.random()*matrix[0].length)
+    //     var y = Math.floor(Math.random()*matrix.length)
+    //     var rad = 3
+    //     matrix[y][x] = 6;
+    //     boomArr.push(new Boom(x, y, rad))
+    // }
 }

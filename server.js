@@ -39,25 +39,24 @@ charecterStatistic = {
 }
 matrix = []
 let a = 0;
-let num = 50;
+let num = 40;
 for (var y = 0; y < num; y++) {
     matrix[y] = []
     for (var x = 0; x < num; x++) {
         var rand = Math.random() * 1000;
         if (rand <= 50) a = 0;
-        else if (rand <= 920) a = 1;
+        else if (rand <= 975) a = 1;
         else if (rand <= 985) a = 2;
         else if (rand <= 998) a = 3;
         matrix[y][x] = a
     }
 }
-matrix[43][23] = 6;
+matrix[23][13] = 6;
 matrix[28][13] = 6;
-matrix[8][33] = 6;
-// matrix[17][21]=6;
+matrix[8][23] = 6;
+matrix[17][21] = 6;
 
 matrix[3][11] = 4;
-
 matrix[3][21] = 5;
 
 weather = ["Ձմեռ", "Գարուն", "Ամառ", "Աշուն"];
@@ -106,18 +105,24 @@ var stormChecker = false;
 
 
 io.on('connection', function (socket) {
+    socket.on('pushGrasses', function () {
+        for (var gr = 0; gr < 7; gr++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+
+            matrix[y][x] = 1;
+            grassArr.push(new Grass(x, y))
+
+        }
+    })
     socket.on('stormCall', function () {
-
         stormChecker = true;
-        var randInt = 49;/*Math.floor(Math.random() * (num - 7) + 7);*/
-
+        var randInt = Math.floor(Math.random() * ((num * 2) - 7) + 7);
+        var randInt2 = Math.floor(Math.random() * ((num - 7) - (-num + 7)) - num + 7);
         for (var y = 0; y < matrix.length; y++) {
             for (var x = 0; x < matrix[y].length; x++) {
-
-                if (y + x == randInt) {
-                    console.log(randInt)
+                if (y + x == randInt || y + x == randInt - 5 || x == y + randInt2 || x == y + randInt2 - 5) {
                     if (x >= 0 && y >= 0 && x < matrix[0].length && y < matrix.length) {
-
                         if (matrix[y][x] == 1) {
                             for (var l in grassArr) {
                                 if (x == grassArr[l].x && y == grassArr[l].y) {
@@ -126,7 +131,7 @@ io.on('connection', function (socket) {
                                 }
                             }
                         }
-                        if (matrix[y][x] == 2) {
+                        else if (matrix[y][x] == 2) {
                             for (var l in xotakerArr) {
                                 if (x == xotakerArr[l].x && y == xotakerArr[l].y) {
                                     xotakerArr.splice(l, 1);
@@ -134,7 +139,7 @@ io.on('connection', function (socket) {
                                 }
                             }
                         }
-                        if (matrix[y][x] == 3) {
+                        else if (matrix[y][x] == 3) {
                             for (var l in gishatichArr) {
                                 if (x == gishatichArr[l].x && y == gishatichArr[l].y) {
                                     gishatichArr.splice(l, 1);
@@ -148,7 +153,7 @@ io.on('connection', function (socket) {
             }
         }
     })
-    socket.on("kill all god", function () {
+    socket.on("kill", function () {
 
         grassArr = [];
         xotakerArr = [];
@@ -170,16 +175,12 @@ io.on('connection', function (socket) {
     })
 });
 
-
 setInterval(serverDraw, 1000);
 
 boomCount = 0;
 time = 0
 function serverDraw() {
-    
     io.sockets.emit('number', [grassArr.length, xotakerArr.length, gishatichArr.length])
-    // io.sockets.emit('born',[grassesBorn,grassEatersBorn,gishatichsBorn])
-    // io.sockets.emit('diedNum',[diedGrassEatherNum,diedHunterNum])
     io.sockets.emit('statistics', charecterStatistic);
     time++
     boomCount++;
@@ -205,7 +206,6 @@ function serverDraw() {
     if (boomCount > 5) {
         for (let i in boomArr) {
             boomArr[i].kill()
-
         }
     }
     for (var i in xotakerArr) {
@@ -243,10 +243,11 @@ function serverDraw() {
     io.sockets.emit('matrix', matrix);
     io.sockets.emit("exanaks", exanak);
     if (stormChecker == true) {
+        stormChecker = false;
         for (var y in matrix) {
             for (var x in matrix[y]) {
-                if(matrix[y][x]==7){
-                    matrix[y][x]=0;
+                if (matrix[y][x] == 7) {
+                    matrix[y][x] = 0;
                 }
             }
         }

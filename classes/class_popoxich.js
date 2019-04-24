@@ -1,18 +1,26 @@
 var gishatich = require('./class_gishatich.js')
-module.exports=class popoxich{
+module.exports = class popoxich {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.energy = 10;
+       
         this.directions = [
-            [this.x + 5, this.y - 6],
-            [this.x + 6, this.y - 6],
-            [this.x + 7, this.y + 8],
-            [this.x + 6, this.y + 6],
-            [this.x - 6, this.y + 7],
-            [this.x - 6, this.y + 9],
-            [this.x - 6, this.y - 9],
-            [this.x - 6, this.y - 9]
+            [this.x + 12, this.y - 6],
+            [this.x + 11, this.y - 20],
+            [this.x + 16, this.y + 21],
+            [this.x + 12, this.y + 6],
+            [this.x - 13, this.y + 9],
+            [this.x - 9, this.y + 15],
+            [this.x - 12, this.y - 22],
+            [this.x - 21, this.y - 9],
+            [this.x + 1, this.y],
+            [this.x + 1, this.y + 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x - 1, this.y - 1],
+            [this.x, this.y + 1],
+            [this.x, this.y - 1],
         ];
     }
     chooseNearFieldsByIndex(ch) {
@@ -29,10 +37,10 @@ module.exports=class popoxich{
         }
         return found;
     }
-    
+
     move() {
-        var lll=this.chooseNearFieldsByIndex(0)
-        var field = lll[Math.floor(Math.random()*lll.length)];                         
+        var lll = this.chooseNearFieldsByIndex(0)
+        var field = lll[Math.floor(Math.random() * lll.length)];
         if (field) {
             matrix[this.y][this.x] = 0;
             this.x = field[0];
@@ -41,8 +49,8 @@ module.exports=class popoxich{
         }
     }
     eat() {
-        var lll=this.chooseNearFieldsByIndex(1)
-        var target = lll[Math.floor(Math.random()*lll.length)];
+        var lll = this.chooseNearFieldsByIndex(1)
+        var target = lll[Math.floor(Math.random() * lll.length)];
         if (target) {
             matrix[this.y][this.x] = 3;
             gishatichArr.push(new gishatich(this.x, this.y));

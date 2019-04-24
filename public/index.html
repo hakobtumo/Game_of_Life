@@ -21,18 +21,19 @@
 		}
 
 		.tools {
-			font-size:1.7em;
+			font-size: 1.7em;
 			display: inline-block;
 			margin: 5px;
-			
+
 		}
 
 		.weatherDiv {
 			margin-bottom: 10px;
 		}
-		button{
-			color:rgb(17, 0, 255);
-			font-size:20px;
+
+		button {
+			color: rgb(17, 0, 255);
+			font-size: 23px;
 		}
 	</style>
 </head>
@@ -46,13 +47,16 @@
 		<p id="weather" style="color:rgb(255, 0, 0);font-size:50px;"></p>
 	</div>
 	<div class="tools">
-		<h1 style="color:red">God's tool</h1>
+		<h1 style="color:red">God's tools</h1>
 		<ul>
-			<li>
-				<button id="kill">Kill Them All</button>
+			<li id="killer">
+				<button onclick="killAll()">Kill Them All</button>
 			</li>
 			<li>
-				<button id="Call_Storm">Call A Storm</button>
+				<button onclick="stormCall()">Call A Storm</button>
+			</li>
+			<li>
+					<button onclick="pushGrasses()">Push Grasses</button>
 			</li>
 		</ul>
 	</div>
