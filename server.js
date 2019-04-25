@@ -100,7 +100,7 @@ function start() {
         }
     }
 }
-start();
+start()
 var stormChecker = false;
 
 
@@ -109,10 +109,40 @@ io.on('connection', function (socket) {
         for (var gr = 0; gr < 7; gr++) {
             var x = Math.floor(Math.random() * matrix[0].length)
             var y = Math.floor(Math.random() * matrix.length)
-
-            matrix[y][x] = 1;
-            grassArr.push(new Grass(x, y))
-
+            if (matrix[y][x] = 0) {
+                matrix[y][x] = 1;
+                grassArr.push(new Grass(x, y))
+            }
+        }
+    })
+    socket.on('pushGrassEaters', function () {
+        for (var gr = 0; gr < 7; gr++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 0) {
+            matrix[y][x] = 2;
+            xotakerArr.push(new Xotaker(x, y, 2))
+            }
+        }
+    })
+    socket.on('pushGrassEaters', function () {
+        for (var gr = 0; gr < 7; gr++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 0) {
+            matrix[y][x] = 2;
+            xotakerArr.push(new Xotaker(x, y, 2))
+            }
+        }
+    })
+    socket.on('pushGrassEaters', function () {
+        for (var gr = 0; gr < 7; gr++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 0) {
+            matrix[y][x] = 3;
+            gishatichArr.push(new gishatich(x, y))
+            }
         }
     })
     socket.on('stormCall', function () {

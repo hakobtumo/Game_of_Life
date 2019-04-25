@@ -126,8 +126,12 @@ function pushGrasses(){
     socket.emit('pushGrasses')
 }
 
-
-
+function pushGrassEaters(){
+    socket.emit('pushGrassEaters')
+}
+function pushHunters(){
+    socket.emit('pushHunters')
+}
 
 
 
