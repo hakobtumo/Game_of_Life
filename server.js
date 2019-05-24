@@ -109,7 +109,7 @@ io.on('connection', function (socket) {
         for (var gr = 0; gr < 7; gr++) {
             var x = Math.floor(Math.random() * matrix[0].length)
             var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] = 0) {
+            if (matrix[y][x] == 0) {
                 matrix[y][x] = 1;
                 grassArr.push(new Grass(x, y))
             }
@@ -119,7 +119,7 @@ io.on('connection', function (socket) {
         for (var gr = 0; gr < 7; gr++) {
             var x = Math.floor(Math.random() * matrix[0].length)
             var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] = 0) {
+            if (matrix[y][x] == 0) {
             matrix[y][x] = 2;
             xotakerArr.push(new Xotaker(x, y, 2))
             }
@@ -129,7 +129,7 @@ io.on('connection', function (socket) {
         for (var gr = 0; gr < 7; gr++) {
             var x = Math.floor(Math.random() * matrix[0].length)
             var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] = 0) {
+            if (matrix[y][x] == 0) {
             matrix[y][x] = 2;
             xotakerArr.push(new Xotaker(x, y, 2))
             }
@@ -139,7 +139,7 @@ io.on('connection', function (socket) {
         for (var gr = 0; gr < 7; gr++) {
             var x = Math.floor(Math.random() * matrix[0].length)
             var y = Math.floor(Math.random() * matrix.length)
-            if (matrix[y][x] = 0) {
+            if (matrix[y][x] == 0) {
             matrix[y][x] = 3;
             gishatichArr.push(new gishatich(x, y))
             }
